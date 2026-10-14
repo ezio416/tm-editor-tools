@@ -8,12 +8,20 @@ void Main() {
         yield();
 
         if (!S_Enabled) {
-            SetBlockHelpers(true);
+            Cleanup();
             continue;
         }
 
         SetBlockHelpers(S_BlockHelpers);
     }
+}
+
+void OnDestroyed() {
+    Cleanup();
+}
+
+void OnDisabled() {
+    OnDestroyed();
 }
 
 void OnKeyPress(bool down, VirtualKey key) {
@@ -40,7 +48,7 @@ void OnKeyPress(bool down, VirtualKey key) {
         and key == S_BlockHelpersHotkey
         and ToggleBlockHelpers()
     ) {
-        HotkeyNotify("Toggle Block Helpers", key);
+        HotkeyNotify("Toggle Block Helpers" + (S_BlockHelpers ? "\\$0f0 On" : "\\$f00 Off"), key);
         return;
     }
 }

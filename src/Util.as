@@ -1,9 +1,13 @@
+void Cleanup() {
+    SetBlockHelpers(true);
+}
+
 void HotkeyNotify(const string&in name, const VirtualKey key) {
     if (!S_HotkeyNotify) {
         return;
     }
 
-    UI::ShowNotification(PLUGIN_TITLE, "Pressed: \\$0f0" + tostring(key) + "\\$g (" + name + ")", 2000);
+    UI::ShowNotification(PLUGIN_TITLE, "Pressed: " + PLUGIN_COLOR + tostring(key) + "\\$g (" + name + "\\$g)");
 }
 
 bool SetBlockHelpers(const bool b) {
