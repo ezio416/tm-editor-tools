@@ -28,7 +28,6 @@ void Main() {
             if (inEditor) {
                 trace("entered map editor");
 
-                SetAirBlockMode(S_AirBlockMode);
                 SetBlockHelpers(S_BlockHelpers);
 
             } else {
@@ -70,7 +69,9 @@ void OnKeyPress(bool down, VirtualKey key) {
         and key == S_AirBlockModeHotkey
         and ToggleAirBlockMode()
     ) {
-        NotifyHotkey("Toggle Air Block Mode" + (S_AirBlockMode ? "\\$0f0 On" : "\\$f00 Off"), key);
+        NotifyHotkey(
+            "Toggle Air Block Mode" + (Editor.PluginMapType.EnableAirMapping ? "\\$0f0 On" : "\\$f00 Off"), key
+        );
         return;
     }
 

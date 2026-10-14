@@ -5,7 +5,6 @@ uint64 g_lastQuicksave = 0;
 void Cleanup() {
     trace("cleaning up...");
 
-    SetAirBlockMode(false);
     SetBlockHelpers(true);
 }
 
@@ -67,27 +66,6 @@ VirtualKey RenderHotkeySelector(const string&in name, VirtualKey setKey) {
     return setKey;
 }
 
-bool SetAirBlockMode(const bool b) {
-    auto App = cast<CTrackMania>(GetApp());
-
-    auto Editor = cast<CGameCtnEditorFree>(App.Editor);
-    if (false
-        or Editor is null
-        or Editor.PluginMapType is null
-        or !Editor.PluginMapType.IsEditorReadyForRequest
-    ) {
-        return false;
-    }
-
-    if (Editor.PluginMapType.EnableAirMapping != b) {
-        Editor.ButtonAirBlockModeOnClick();
-    }
-
-    trace((b ? "en" : "dis") + "abled air block mode");
-
-    return true;
-}
-
 bool SetBlockHelpers(const bool b) {
     auto App = cast<CTrackMania>(GetApp());
 
@@ -108,8 +86,27 @@ bool SetBlockHelpers(const bool b) {
 }
 
 bool ToggleAirBlockMode() {
-    S_AirBlockMode = !S_AirBlockMode;
-    return SetAirBlockMode(S_AirBlockMode);
+    auto App = cast<CTrackMania>(GetApp());
+
+    auto Editor = cast<CGameCtnEditorFree>(App.Editor);
+    if (false
+        or Editor is null
+        or Editor.PluginMapType is null
+        or !Editor.PluginMapType.IsEditorReadyForRequest
+    ) {
+        return false;
+    }
+
+    switch (Editor.PluginMapType.PlaceMode) {
+        case CGameEditorPluginMap::EPlaceMode::Block:
+        case CGameEditorPluginMap::EPlaceMode::GhostBlock:
+        case CGameEditorPluginMap::EPlaceMode::FreeBlock:
+            Editor.ButtonAirBlockModeOnClick();
+            trace("toggled air block mode");
+            return true;
+        default:
+            return false;
+    }
 }
 
 bool ToggleBlockHelpers() {

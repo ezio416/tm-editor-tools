@@ -1,4 +1,3 @@
-[Setting hidden] bool       S_AirBlockMode       = false;
 [Setting hidden] VirtualKey S_AirBlockModeHotkey = VirtualKey::A;
 [Setting hidden] bool       S_BlockHelpers       = true;
 [Setting hidden] VirtualKey S_BlockHelpersHotkey = VirtualKey::B;
@@ -25,12 +24,6 @@ void SettingsTab_General() {
     S_Enabled = enabled;
 
     if (UI::TreeNode("Tools", UI::TreeNodeFlags::Framed)) {
-        const bool airBlockMode = UI::Checkbox("Air block mode", S_AirBlockMode);
-        if (S_AirBlockMode != airBlockMode) {
-            S_AirBlockMode = airBlockMode;
-            SetAirBlockMode(S_AirBlockMode);
-        }
-
         const bool blockHelpers = UI::Checkbox("Block helpers", S_BlockHelpers);
         if (S_BlockHelpers != blockHelpers) {
             S_BlockHelpers = blockHelpers;
