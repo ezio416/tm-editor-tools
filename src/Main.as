@@ -81,6 +81,14 @@ void OnKeyPress(bool down, VirtualKey key) {
         NotifyHotkey("Toggle Block Helpers" + (S_BlockHelpers ? "\\$0f0 On" : "\\$f00 Off"), key);
         return;
     }
+
+    if (true
+        and key == S_QuicksaveHotkey
+        and Quicksave()
+    ) {
+        NotifyHotkey("Quicksave", key);
+        return;
+    }
 }
 
 void RenderMenu() {

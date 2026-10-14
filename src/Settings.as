@@ -5,6 +5,7 @@
 [Setting hidden] bool       S_Enabled            = true;
 [Setting hidden] bool       S_Hotkeys            = true;
 [Setting hidden] bool       S_HotkeysNotify      = true;
+[Setting hidden] VirtualKey S_QuicksaveHotkey    = VirtualKey::Q;
 
 [SettingsTab name="General" icon="Cogs" order=0]
 void SettingsTab_General() {
@@ -42,13 +43,14 @@ void SettingsTab_General() {
     if (UI::TreeNode("Hotkeys", UI::TreeNodeFlags::Framed)) {
         UI::PushID("hotkeys");
 
-        S_Hotkeys = UI::Checkbox("Enabled", S_Hotkeys);
+        S_Hotkeys       = UI::Checkbox("Enabled",       S_Hotkeys);
         S_HotkeysNotify = UI::Checkbox("Notifications", S_HotkeysNotify);
 
         UI::Separator();
 
         S_AirBlockModeHotkey = RenderHotkeySelector("Air block mode", S_AirBlockModeHotkey);
-        S_BlockHelpersHotkey = RenderHotkeySelector("Block helpers", S_BlockHelpersHotkey);
+        S_BlockHelpersHotkey = RenderHotkeySelector("Block helpers",  S_BlockHelpersHotkey);
+        S_QuicksaveHotkey    = RenderHotkeySelector("Quicksave",      S_QuicksaveHotkey);
 
         UI::PopID();
         UI::TreePop();

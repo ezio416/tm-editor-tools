@@ -1,3 +1,7 @@
+const uint64 QUICKSAVE_WAIT_TIME = 2000;
+
+uint64 g_lastQuicksave = 0;
+
 void Cleanup() {
     trace("cleaning up...");
 
@@ -11,6 +15,35 @@ void NotifyHotkey(const string&in name, const VirtualKey key) {
     }
 
     UI::ShowNotification(PLUGIN_TITLE, "Pressed: " + PLUGIN_COLOR + tostring(key) + "\\$g (" + name + "\\$g)");
+}
+
+bool Quicksave() {
+    if (Time::Now - g_lastQuicksave < QUICKSAVE_WAIT_TIME) {
+        return false;
+    }
+
+    auto App = cast<CTrackMania>(GetApp());
+
+    auto Editor = cast<CGameCtnEditorFree>(App.Editor);
+    if (false
+        or Editor is null
+        or Editor.PluginMapType is null
+    ) {
+        return false;
+    }
+
+    if (Editor.PluginMapType.MapFileName.Length > 0) {
+        Editor.PluginMapType.SaveMap(Path::Join(
+            Path::GetDirectoryName(Editor.PluginMapType.MapFileName),
+            Editor.PluginMapType.MapName + ".Map.Gbx"
+        ));
+    } else {
+        Editor.ButtonSaveOnClick();
+    }
+
+    g_lastQuicksave = Time::Now;
+
+    return true;
 }
 
 VirtualKey RenderHotkeySelector(const string&in name, VirtualKey setKey) {
