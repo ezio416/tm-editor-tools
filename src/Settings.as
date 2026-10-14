@@ -41,9 +41,9 @@ void SettingsTab_General() {
 
         UI::Separator();
 
-        S_AirBlockModeHotkey = RenderHotkeySelector("Air block mode", S_AirBlockModeHotkey);
-        S_BlockHelpersHotkey = RenderHotkeySelector("Block helpers",  S_BlockHelpersHotkey);
-        S_QuicksaveHotkey    = RenderHotkeySelector("Quicksave",      S_QuicksaveHotkey);
+        S_AirBlockModeHotkey = RenderHotkeySelector("Toggle air block mode", S_AirBlockModeHotkey);
+        S_BlockHelpersHotkey = RenderHotkeySelector("Toggle block helpers",  S_BlockHelpersHotkey);
+        S_QuicksaveHotkey    = RenderHotkeySelector("Quicksave",             S_QuicksaveHotkey);
 
         UI::PopID();
         UI::TreePop();
