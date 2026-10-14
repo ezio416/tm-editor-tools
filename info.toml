@@ -1,5 +1,5 @@
 [meta]
-name = "PluginTemplate"
+name = "Editor Tools"
 author = "Ezio"
-category = "Developer"
+category = "Map Editor"
 version = "0.0.0"
