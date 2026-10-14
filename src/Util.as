@@ -31,6 +31,8 @@ bool Quicksave() {
         return false;
     }
 
+    trace("quicksaving map...");
+
     if (Editor.PluginMapType.MapFileName.Length > 0) {
         Editor.PluginMapType.SaveMap(Path::Join(
             Path::GetDirectoryName(Editor.PluginMapType.MapFileName),
@@ -112,4 +114,19 @@ bool ToggleAirBlockMode() {
 bool ToggleBlockHelpers() {
     S_BlockHelpers = !S_BlockHelpers;
     return SetBlockHelpers(S_BlockHelpers);
+}
+
+bool Validate() {
+    auto App = cast<CTrackMania>(GetApp());
+
+    auto Editor = cast<CGameCtnEditorFree>(App.Editor);
+    if (Editor is null) {
+        return false;
+    }
+
+    trace("validating map...");
+
+    Editor.ButtonValidateOnClick();
+
+    return true;
 }

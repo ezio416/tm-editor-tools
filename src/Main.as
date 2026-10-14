@@ -90,6 +90,14 @@ void OnKeyPress(bool down, VirtualKey key) {
         NotifyHotkey("Quicksave", key);
         return;
     }
+
+    if (true
+        and key == S_ValidateHotkey
+        and Validate()
+    ) {
+        NotifyHotkey("Validate", key);
+        return;
+    }
 }
 
 void RenderMenu() {

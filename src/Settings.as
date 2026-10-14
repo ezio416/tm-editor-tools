@@ -5,6 +5,7 @@
 [Setting hidden] bool       S_Hotkeys            = true;
 [Setting hidden] bool       S_HotkeysNotify      = true;
 [Setting hidden] VirtualKey S_QuicksaveHotkey    = VirtualKey::Q;
+[Setting hidden] VirtualKey S_ValidateHotkey     = VirtualKey::V;
 
 [SettingsTab name="General" icon="Cogs" order=0]
 void SettingsTab_General() {
@@ -44,6 +45,7 @@ void SettingsTab_General() {
         S_AirBlockModeHotkey = RenderHotkeySelector("Toggle air block mode", S_AirBlockModeHotkey);
         S_BlockHelpersHotkey = RenderHotkeySelector("Toggle block helpers",  S_BlockHelpersHotkey);
         S_QuicksaveHotkey    = RenderHotkeySelector("Quicksave",             S_QuicksaveHotkey);
+        S_ValidateHotkey     = RenderHotkeySelector("Validate",              S_ValidateHotkey);
 
         UI::PopID();
         UI::TreePop();
