@@ -2,7 +2,7 @@
 [Setting hidden] bool       S_BlockHelpers       = true;
 [Setting hidden] VirtualKey S_BlockHelpersHotkey = VirtualKey::B;
 [Setting hidden] bool       S_Enabled            = true;
-[Setting hidden] bool       S_Hotkeys            = true;
+[Setting hidden] bool       S_Hotkeys            = false;
 [Setting hidden] bool       S_HotkeysNotify      = true;
 [Setting hidden] VirtualKey S_QuicksaveHotkey    = VirtualKey::Q;
 [Setting hidden] VirtualKey S_ValidateHotkey     = VirtualKey::V;
