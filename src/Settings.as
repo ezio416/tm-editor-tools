@@ -23,23 +23,12 @@ void SettingsTab_General() {
     }
     S_Enabled = enabled;
 
-    S_Hotkeys = UI::Checkbox("Hotkeys", S_Hotkeys);
-    UI::Indent(30.0f);
-    S_HotkeysNotify = UI::Checkbox("Show hotkey notifications", S_HotkeysNotify);
-    UI::Indent(-30.0f);
-
     if (UI::TreeNode("Tools", UI::TreeNodeFlags::Framed)) {
-        int hk = 0;
-
         const bool airBlockMode = UI::Checkbox("Air block mode", S_AirBlockMode);
         if (S_AirBlockMode != airBlockMode) {
             S_AirBlockMode = airBlockMode;
             SetAirBlockMode(S_AirBlockMode);
         }
-
-        UI::Indent(30.0f);
-        S_AirBlockModeHotkey = RenderHotkeySelector(S_AirBlockModeHotkey, hk++);
-        UI::Indent(-30.0f);
 
         const bool blockHelpers = UI::Checkbox("Block helpers", S_BlockHelpers);
         if (S_BlockHelpers != blockHelpers) {
@@ -47,10 +36,21 @@ void SettingsTab_General() {
             SetBlockHelpers(S_BlockHelpers);
         }
 
-        UI::Indent(30.0f);
-        S_BlockHelpersHotkey = RenderHotkeySelector(S_BlockHelpersHotkey, hk++);
-        UI::Indent(-30.0f);
+        UI::TreePop();
+    }
 
+    if (UI::TreeNode("Hotkeys", UI::TreeNodeFlags::Framed)) {
+        UI::PushID("hotkeys");
+
+        S_Hotkeys = UI::Checkbox("Enabled", S_Hotkeys);
+        S_HotkeysNotify = UI::Checkbox("Notifications", S_HotkeysNotify);
+
+        UI::Separator();
+
+        S_AirBlockModeHotkey = RenderHotkeySelector("Air block mode", S_AirBlockModeHotkey);
+        S_BlockHelpersHotkey = RenderHotkeySelector("Block helpers", S_BlockHelpersHotkey);
+
+        UI::PopID();
         UI::TreePop();
     }
 }

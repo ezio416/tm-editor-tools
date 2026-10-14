@@ -13,8 +13,8 @@ void NotifyHotkey(const string&in name, const VirtualKey key) {
     UI::ShowNotification(PLUGIN_TITLE, "Pressed: " + PLUGIN_COLOR + tostring(key) + "\\$g (" + name + "\\$g)");
 }
 
-VirtualKey RenderHotkeySelector(VirtualKey setKey, const int id) {
-    if (UI::BeginCombo("hotkey##" + id, tostring(setKey))) {
+VirtualKey RenderHotkeySelector(const string&in name, VirtualKey setKey) {
+    if (UI::BeginCombo(name, tostring(setKey))) {
         for (int i = 0; i <= VirtualKey::OemClear; i++) {
             auto key = VirtualKey(i);
 
